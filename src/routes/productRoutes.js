@@ -1,7 +1,18 @@
 import express from 'express'
+import {
+  getAllProducts,
+  getProductBySlug,
+  getFeaturedProducts,
+  getProductsByCategory,
+  searchProducts,
+} from '../controllers/productController.js'
+
 const router = express.Router()
 
-router.get('/',          (req, res) => res.json({ message: 'get all products — coming in Phase 9' }))
-router.get('/:slug',     (req, res) => res.json({ message: `get product ${req.params.slug} — coming in Phase 9` }))
+router.get('/',                    getAllProducts)
+router.get('/featured',            getFeaturedProducts)
+router.get('/search',              searchProducts)
+router.get('/category/:category',  getProductsByCategory)
+router.get('/:slug',               getProductBySlug)
 
 export default router

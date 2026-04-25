@@ -1,8 +1,17 @@
 import express from 'express'
+import {
+  registerUser,
+  loginUser,
+  getUserProfile,
+  updateUserProfile,
+} from '../controllers/authController.js'
+import { protect } from '../middleware/authMiddleware.js'
+
 const router = express.Router()
 
-router.post('/register', (req, res) => res.json({ message: 'register endpoint — coming in Phase 9' }))
-router.post('/login',    (req, res) => res.json({ message: 'login endpoint — coming in Phase 9' }))
-router.get('/profile',   (req, res) => res.json({ message: 'profile endpoint — coming in Phase 9' }))
+router.post('/register', registerUser)
+router.post('/login',    loginUser)
+router.get('/profile',   protect, getUserProfile)
+router.put('/profile',   protect, updateUserProfile)
 
 export default router
